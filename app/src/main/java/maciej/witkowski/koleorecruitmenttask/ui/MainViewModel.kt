@@ -1,42 +1,30 @@
 package maciej.witkowski.koleorecruitmenttask.ui
 
-import androidx.compose.runtime.Immutable
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import maciej.witkowski.koleorecruitmenttask.common.mutableStateIn
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCase
-import maciej.witkowski.koleorecruitmenttask.domain.model.Station
 
 internal class MainViewModel(
     combineStationsStationsUseCase: CombineStationsUseCase,
 ) : ViewModel() {
 
+    var selectedStation = 1
+
     init {
         combineStationsStationsUseCase(Unit)
     }
-
-    internal val state: StateFlow<MainState> = combineStationsStationsUseCase.data
-        .map { data ->
-            MainState(
-                stations = data
-            )
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = MainState()
-        )
 
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
@@ -70,9 +58,8 @@ internal class MainViewModel(
     fun onSearchTextChange(text: String) {
         _searchText.value = text
     }
-}
 
-@Immutable
-internal data class MainState(
-    val stations: List<Station> = arrayListOf()
-)
+    fun onStationSet(id: Int) {
+        Log.d("aha23", id.toString())
+    }
+}

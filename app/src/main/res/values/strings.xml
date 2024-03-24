@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KoleoRecruitmentTask</string>
+    <string name="choose_station">Wybierz stacje</string>
+    <string name="back_button">Wstecz</string>
 </resources>
