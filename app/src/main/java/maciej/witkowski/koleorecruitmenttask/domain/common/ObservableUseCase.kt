@@ -1,4 +1,4 @@
-package maciej.witkowski.koleorecruitmenttask.domain.base
+package maciej.witkowski.koleorecruitmenttask.domain.common
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.BufferOverflow

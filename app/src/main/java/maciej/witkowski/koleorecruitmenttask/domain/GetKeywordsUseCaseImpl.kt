@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import maciej.witkowski.koleorecruitmenttask.data.model.StationKeywordsItem
-import maciej.witkowski.koleorecruitmenttask.domain.base.BaseObservableUseCase
+import maciej.witkowski.koleorecruitmenttask.domain.common.BaseObservableUseCase
 
 class GetKeywordsUseCaseImpl(
     private val stationsRepository: StationsRepository,

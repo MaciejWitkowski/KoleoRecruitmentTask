@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import maciej.witkowski.koleorecruitmenttask.data.model.StationsItem
-import maciej.witkowski.koleorecruitmenttask.domain.base.BaseObservableUseCase
+import maciej.witkowski.koleorecruitmenttask.domain.common.BaseObservableUseCase
 
 class GetStationsUseCaseImpl(
     private val stationsRepository: StationsRepository,
