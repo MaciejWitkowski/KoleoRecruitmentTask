@@ -1,5 +1,7 @@
 package maciej.witkowski.koleorecruitmenttask.data
 
+import maciej.witkowski.koleorecruitmenttask.data.model.StationKeywordsItem
+import maciej.witkowski.koleorecruitmenttask.data.model.StationsItem
 import retrofit2.Retrofit
 import retrofit2.create
 import retrofit2.http.GET

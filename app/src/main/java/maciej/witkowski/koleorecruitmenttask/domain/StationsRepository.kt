@@ -1,8 +1,8 @@
 package maciej.witkowski.koleorecruitmenttask.domain
 
 import kotlinx.coroutines.flow.Flow
-import maciej.witkowski.koleorecruitmenttask.data.StationKeywordsItem
-import maciej.witkowski.koleorecruitmenttask.data.StationsItem
+import maciej.witkowski.koleorecruitmenttask.data.model.StationKeywordsItem
+import maciej.witkowski.koleorecruitmenttask.data.model.StationsItem
 
 interface StationsRepository {
 

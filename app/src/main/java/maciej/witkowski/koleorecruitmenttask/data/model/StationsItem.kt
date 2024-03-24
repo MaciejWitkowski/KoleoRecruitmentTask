@@ -1,4 +1,4 @@
-package maciej.witkowski.koleorecruitmenttask.data
+package maciej.witkowski.koleorecruitmenttask.data.model
 
 data class StationsItem(
     val city: String?,
