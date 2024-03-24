@@ -5,4 +5,9 @@ data class Station(
     val keyword: String,
     val longitude: Double?,
     val latitude: Double?,
-)
+) {
+
+    fun doesMatchSearchQuery(query: String): Boolean {
+        return keyword.contains(query, ignoreCase = true)
+    }
+}
