@@ -6,6 +6,8 @@
     <string name="second_station">Stacja 2: </string>
     <string name="select_first_station">Wybierz 1 stację</string>
     <string name="select_second_station">Wybierz 2 stację</string>
-    <string name="distance">Odległość:</string>
+    <string name="distance_title">Odległość:</string>
+    <string name="distance">%dkm</string>
     <string name="distance_placeholer">Wprowadź obie stacje</string>
+    <string name="distance_unavailable">Nie można obliczyć</string>
 </resources>

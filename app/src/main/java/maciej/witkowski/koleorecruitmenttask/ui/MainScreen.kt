@@ -33,7 +33,7 @@ fun MainScreen(
         TextButton(onClick = onSecondStationClick) {
             Text(text = secondStation ?: stringResource(R.string.select_second_station), fontSize = 30.sp)
         }
-        Text(text = stringResource(R.string.distance), fontSize = 30.sp)
+        Text(text = stringResource(R.string.distance_title), fontSize = 30.sp)
         Text(text = distance ?: stringResource(R.string.distance_placeholer), fontSize = 30.sp)
     }
 }
