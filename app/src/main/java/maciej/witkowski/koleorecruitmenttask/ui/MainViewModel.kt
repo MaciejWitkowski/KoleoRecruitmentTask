@@ -1,6 +1,5 @@
 package maciej.witkowski.koleorecruitmenttask.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
@@ -13,12 +12,16 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import maciej.witkowski.koleorecruitmenttask.common.mutableStateIn
+import maciej.witkowski.koleorecruitmenttask.domain.CalculateDistanceUseCase
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCase
+import maciej.witkowski.koleorecruitmenttask.domain.StationsCoords
 import maciej.witkowski.koleorecruitmenttask.domain.model.Station
 
 internal class MainViewModel(
     combineStationsStationsUseCase: CombineStationsUseCase,
+    private val calculateDistanceUseCase: CalculateDistanceUseCase
 ) : ViewModel() {
 
     var selectedStation = 1
@@ -26,6 +29,9 @@ internal class MainViewModel(
     init {
         combineStationsStationsUseCase(Unit)
     }
+
+    private val _distance = MutableStateFlow<String?>(null)
+    val distance = _distance.asStateFlow()
 
     private val _firstStation = MutableStateFlow<Station?>(null)
     val firstStation = _firstStation.asStateFlow()
@@ -69,7 +75,22 @@ internal class MainViewModel(
     fun onStationSet(station: Station) {
         if (selectedStation == 1)
             _firstStation.value = station
-        else
+        else {
             _secondStation.value = station
+        }
+        if (_firstStation.value != null && _secondStation.value != null) {
+            viewModelScope.launch {
+                _distance.emit(
+                    calculateDistanceUseCase.executeSync(
+                        StationsCoords(
+                            firstLongitude = firstStation.value?.longitude,
+                            firstLatitude = firstStation.value?.latitude,
+                            secondLongitude = secondStation.value?.longitude,
+                            secondLatitude = secondStation.value?.latitude
+                        )
+                    )
+                )
+            }
+        }
     }
 }

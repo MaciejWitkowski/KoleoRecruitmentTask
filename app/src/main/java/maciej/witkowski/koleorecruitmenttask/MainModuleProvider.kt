@@ -8,6 +8,8 @@ import maciej.witkowski.koleorecruitmenttask.common.DispatcherProvider
 import maciej.witkowski.koleorecruitmenttask.common.DispatcherProviderImpl
 import maciej.witkowski.koleorecruitmenttask.data.StationsApiService
 import maciej.witkowski.koleorecruitmenttask.data.StationsRepositoryImpl
+import maciej.witkowski.koleorecruitmenttask.domain.CalculateDistanceUseCase
+import maciej.witkowski.koleorecruitmenttask.domain.CalculateDistanceUseCaseImpl
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCase
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCaseImpl
 import maciej.witkowski.koleorecruitmenttask.domain.GetKeywordsUseCase
@@ -38,6 +40,7 @@ object MainModuleProvider : ModuleProvider {
         factoryOf(::CombineStationsUseCaseImpl) { bind<CombineStationsUseCase>() }
         factoryOf(::GetStationsUseCaseImpl) { bind<GetStationsUseCase>() }
         factoryOf(::GetKeywordsUseCaseImpl) { bind<GetKeywordsUseCase>() }
+        factoryOf(::CalculateDistanceUseCaseImpl) { bind<CalculateDistanceUseCase>() }
         viewModelOf(::MainViewModel)
         single<DispatcherProvider> { DispatcherProviderImpl() }
 

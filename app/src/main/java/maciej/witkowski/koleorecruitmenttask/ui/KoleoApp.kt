@@ -1,5 +1,6 @@
 package maciej.witkowski.koleorecruitmenttask.ui
 
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -69,6 +70,8 @@ fun KoleoApp(
     val backStackEntry by navController.currentBackStackEntryAsState()
     val firstStation = viewModel.firstStation.collectAsState().value
     val secondStation = viewModel.secondStation.collectAsState().value
+    val distance = viewModel.distance.collectAsState().value
+    Log.d("aha44", distance.toString())
     val currentScreen = KoleoScreen.valueOf(
         backStackEntry?.destination?.route ?: KoleoScreen.Start.name
     )
@@ -101,6 +104,7 @@ fun KoleoApp(
                     onSecondStationClick = {
                         setSelectedStationAndNavigateToSelect(2, viewModel, navController)
                     },
+                    distance = distance
                 )
             }
             composable(route = KoleoScreen.Select.name) {

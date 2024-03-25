@@ -16,6 +16,7 @@ import maciej.witkowski.koleorecruitmenttask.R
 fun MainScreen(
     firstStation: String?,
     secondStation: String?,
+    distance: String?,
     onFirstStationClick: () -> Unit,
     onSecondStationClick: () -> Unit,
 ) {
@@ -33,7 +34,7 @@ fun MainScreen(
             Text(text = secondStation ?: stringResource(R.string.select_second_station), fontSize = 30.sp)
         }
         Text(text = stringResource(R.string.distance), fontSize = 30.sp)
-        Text(text = stringResource(R.string.distance_placeholer), fontSize = 30.sp)
+        Text(text = distance ?: stringResource(R.string.distance_placeholer), fontSize = 30.sp)
     }
 }
 
