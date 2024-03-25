@@ -20,13 +20,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import maciej.witkowski.koleorecruitmenttask.domain.model.Station
 import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LiveSearchScreen(
    // stationNumber: Int,
-    onItemClick: (Int) -> Unit
+    onItemClick: (Station) -> Unit
 ) {
     val viewModel = getViewModel<MainViewModel>()
     val searchText by viewModel.searchText.collectAsState()
@@ -59,7 +60,7 @@ fun LiveSearchScreen(
             ) {
 
                 items(stations) { station ->
-                    TextButton(onClick = { onItemClick(station.id) }) {
+                    TextButton(onClick = { onItemClick(station) }) {
                         Text(
                             text = station.keyword,
                             modifier = Modifier

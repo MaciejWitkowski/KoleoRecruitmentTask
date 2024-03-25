@@ -2,4 +2,10 @@
     <string name="app_name">KoleoRecruitmentTask</string>
     <string name="choose_station">Wybierz stacje</string>
     <string name="back_button">Wstecz</string>
+    <string name="first_station">Stacja 1:</string>
+    <string name="second_station">Stacja 2: </string>
+    <string name="select_first_station">Wybierz 1 stację</string>
+    <string name="select_second_station">Wybierz 2 stację</string>
+    <string name="distance">Odległość:</string>
+    <string name="distance_placeholer">Wprowadź obie stacje</string>
 </resources>

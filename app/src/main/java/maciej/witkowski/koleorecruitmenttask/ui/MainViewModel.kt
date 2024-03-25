@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import maciej.witkowski.koleorecruitmenttask.common.mutableStateIn
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCase
+import maciej.witkowski.koleorecruitmenttask.domain.model.Station
 
 internal class MainViewModel(
     combineStationsStationsUseCase: CombineStationsUseCase,
@@ -25,6 +26,12 @@ internal class MainViewModel(
     init {
         combineStationsStationsUseCase(Unit)
     }
+
+    private val _firstStation = MutableStateFlow<Station?>(null)
+    val firstStation = _firstStation.asStateFlow()
+
+    private val _secondStation = MutableStateFlow<Station?>(null)
+    val secondStation = _secondStation.asStateFlow()
 
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
@@ -59,7 +66,10 @@ internal class MainViewModel(
         _searchText.value = text
     }
 
-    fun onStationSet(id: Int) {
-        Log.d("aha23", id.toString())
+    fun onStationSet(station: Station) {
+        if (selectedStation == 1)
+            _firstStation.value = station
+        else
+            _secondStation.value = station
     }
 }
