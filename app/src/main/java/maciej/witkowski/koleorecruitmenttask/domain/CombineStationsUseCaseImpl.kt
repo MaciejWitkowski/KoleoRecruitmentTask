@@ -31,6 +31,6 @@ class CombineStationsUseCaseImpl(
 private fun mergeStations(stations: List<StationsItem>, keywords: List<StationKeywordsItem>): List<Station> {
     val mapArray2 = keywords.associate { Pair(it.station_id, it.keyword ?: "" ) }
     return stations.map {
-        Station(it.id, mapArray2.getOrDefault(it.id, ""), it.latitude, it.longitude)
-    }
+        Station(it.id, mapArray2.getOrDefault(it.id, ""), it.hits, it.latitude, it.longitude)
+    }.sortedByDescending { it.hits }
 }
