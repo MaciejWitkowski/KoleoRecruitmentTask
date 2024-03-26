@@ -1,5 +1,6 @@
 package maciej.witkowski.koleorecruitmenttask.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
@@ -9,6 +10,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -17,6 +19,7 @@ import maciej.witkowski.koleorecruitmenttask.common.mutableStateIn
 import maciej.witkowski.koleorecruitmenttask.domain.CalculateDistanceUseCase
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCase
 import maciej.witkowski.koleorecruitmenttask.domain.StationsCoords
+import maciej.witkowski.koleorecruitmenttask.domain.model.NetworkResult
 import maciej.witkowski.koleorecruitmenttask.domain.model.Station
 
 internal class MainViewModel(
@@ -45,7 +48,20 @@ internal class MainViewModel(
     private val _isSearching = MutableStateFlow(false)
     val isSearching = _isSearching.asStateFlow()
 
-    private val _stations = (combineStationsStationsUseCase.data).mutableStateIn(initialValue = listOf(), scope = viewModelScope)
+    private val _isError = MutableStateFlow(false)
+    val isError = _isError.asStateFlow()
+
+    private val _stations = (combineStationsStationsUseCase.data).map { it ->
+        if (!it.data.isNullOrEmpty())
+            it.data
+        else {
+            _isError.value = true
+            emptyList()
+        }
+    }.mutableStateIn(
+        initialValue = listOf(),
+        scope = viewModelScope
+    )
 
     @OptIn(FlowPreview::class)
     val stations = searchText
@@ -63,9 +79,9 @@ internal class MainViewModel(
         }
         .onEach { _isSearching.update { false } }
         .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
-            _stations.value
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = _stations.value
         )
 
     fun onSearchTextChange(text: String) {

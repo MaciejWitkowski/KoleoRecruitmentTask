@@ -58,7 +58,6 @@ fun LiveSearchScreen(
                     .fillMaxWidth()
                     .weight(1f)
             ) {
-
                 items(stations) { station ->
                     TextButton(onClick = { onItemClick(station) }) {
                         Text(

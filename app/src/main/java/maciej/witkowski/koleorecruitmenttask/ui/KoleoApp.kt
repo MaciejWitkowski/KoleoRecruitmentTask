@@ -61,6 +61,7 @@ fun KoleoAppBar(
         }
     )
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KoleoApp(
@@ -68,10 +69,10 @@ fun KoleoApp(
 ) {
     val viewModel = getViewModel<MainViewModel>()
     val backStackEntry by navController.currentBackStackEntryAsState()
+    val isError = viewModel.isError.collectAsState().value
     val firstStation = viewModel.firstStation.collectAsState().value
     val secondStation = viewModel.secondStation.collectAsState().value
     val distance = viewModel.distance.collectAsState().value
-    Log.d("aha44", distance.toString())
     val currentScreen = KoleoScreen.valueOf(
         backStackEntry?.destination?.route ?: KoleoScreen.Start.name
     )
@@ -86,35 +87,39 @@ fun KoleoApp(
         }
     ) { innerPadding ->
 
-        NavHost(
-            navController = navController,
-            startDestination = KoleoScreen.Start.name,
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(innerPadding)
-        ) {
-            composable(route = KoleoScreen.Start.name) {
-                MainScreen(
-                    firstStation = firstStation?.keyword,
-                    onFirstStationClick = {
-                        setSelectedStationAndNavigateToSelect(1, viewModel, navController)
-                    },
-                    secondStation = secondStation?.keyword,
-                    onSecondStationClick = {
-                        setSelectedStationAndNavigateToSelect(2, viewModel, navController)
-                    },
-                    distance = distance
-                )
-            }
-            composable(route = KoleoScreen.Select.name) {
-                LiveSearchScreen(
-                    onItemClick = {
-                        setStationAndNavigateToStart(it, viewModel, navController)
-                    },
-                )
-            }
+        if (isError) {
+            ErrorScreen()
+        } else {
+            NavHost(
+                navController = navController,
+                startDestination = KoleoScreen.Start.name,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(innerPadding)
+            ) {
+                composable(route = KoleoScreen.Start.name) {
+                    MainScreen(
+                        firstStation = firstStation?.keyword,
+                        onFirstStationClick = {
+                            setSelectedStationAndNavigateToSelect(1, viewModel, navController)
+                        },
+                        secondStation = secondStation?.keyword,
+                        onSecondStationClick = {
+                            setSelectedStationAndNavigateToSelect(2, viewModel, navController)
+                        },
+                        distance = distance
+                    )
+                }
+                composable(route = KoleoScreen.Select.name) {
+                    LiveSearchScreen(
+                        onItemClick = {
+                            setStationAndNavigateToStart(it, viewModel, navController)
+                        },
+                    )
+                }
 
+            }
         }
     }
 }

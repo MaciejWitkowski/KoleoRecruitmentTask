@@ -20,7 +20,6 @@ class CalculateDistanceUseCaseImpl(
         secondLocation.longitude = locations.secondLongitude ?: return context.getString(R.string.distance_unavailable)
         secondLocation.latitude = locations.secondLatitude ?: return context.getString(R.string.distance_unavailable)
         val distance = (firstLocation.distanceTo(secondLocation) / 1000).toInt()
-        Log.d("aha33", distance.toString())
         return context.getString(R.string.distance, distance)
     }
 }
