@@ -1,6 +1,5 @@
 package maciej.witkowski.koleorecruitmenttask.ui
 
-import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -27,7 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import maciej.witkowski.koleorecruitmenttask.R
-import maciej.witkowski.koleorecruitmenttask.domain.model.Station
+import maciej.witkowski.koleorecruitmenttask.domain.model.StationWithKeyword
 import org.koin.androidx.compose.getViewModel
 
 enum class KoleoScreen(@StringRes val title: Int) {
@@ -125,11 +124,11 @@ fun KoleoApp(
 }
 
 private fun setStationAndNavigateToStart(
-    station: Station,
+    stationWithKeyword: StationWithKeyword,
     viewModel: MainViewModel,
     navController: NavHostController
 ) {
-    viewModel.onStationSet(station)
+    viewModel.onStationSet(stationWithKeyword)
     navController.popBackStack(KoleoScreen.Start.name, inclusive = false)
 }
 

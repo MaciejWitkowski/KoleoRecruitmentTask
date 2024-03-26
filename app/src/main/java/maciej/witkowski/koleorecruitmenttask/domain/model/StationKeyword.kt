@@ -1,6 +1,6 @@
 package maciej.witkowski.koleorecruitmenttask.domain.model
 
-data class StationKeywords(
+data class StationKeyword(
     val keyword: String?,
-    val station_id: Int
+    val stationId: Int
 )

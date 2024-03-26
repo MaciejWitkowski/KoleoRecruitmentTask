@@ -1,4 +1,4 @@
-package maciej.witkowski.koleorecruitmenttask.domain.model
+package maciej.witkowski.koleorecruitmenttask.domain.common
 
 sealed class NetworkResult<T>(
     val data: T? = null,

@@ -1,6 +1,5 @@
 package maciej.witkowski.koleorecruitmenttask.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
@@ -19,8 +18,7 @@ import maciej.witkowski.koleorecruitmenttask.common.mutableStateIn
 import maciej.witkowski.koleorecruitmenttask.domain.CalculateDistanceUseCase
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCase
 import maciej.witkowski.koleorecruitmenttask.domain.StationsCoords
-import maciej.witkowski.koleorecruitmenttask.domain.model.NetworkResult
-import maciej.witkowski.koleorecruitmenttask.domain.model.Station
+import maciej.witkowski.koleorecruitmenttask.domain.model.StationWithKeyword
 
 internal class MainViewModel(
     combineStationsStationsUseCase: CombineStationsUseCase,
@@ -36,11 +34,11 @@ internal class MainViewModel(
     private val _distance = MutableStateFlow<String?>(null)
     val distance = _distance.asStateFlow()
 
-    private val _firstStation = MutableStateFlow<Station?>(null)
-    val firstStation = _firstStation.asStateFlow()
+    private val _firstStationWithKeyword = MutableStateFlow<StationWithKeyword?>(null)
+    val firstStation = _firstStationWithKeyword.asStateFlow()
 
-    private val _secondStation = MutableStateFlow<Station?>(null)
-    val secondStation = _secondStation.asStateFlow()
+    private val _secondStationWithKeyword = MutableStateFlow<StationWithKeyword?>(null)
+    val secondStation = _secondStationWithKeyword.asStateFlow()
 
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
@@ -88,13 +86,13 @@ internal class MainViewModel(
         _searchText.value = text
     }
 
-    fun onStationSet(station: Station) {
+    fun onStationSet(stationWithKeyword: StationWithKeyword) {
         if (selectedStation == 1)
-            _firstStation.value = station
+            _firstStationWithKeyword.value = stationWithKeyword
         else {
-            _secondStation.value = station
+            _secondStationWithKeyword.value = stationWithKeyword
         }
-        if (_firstStation.value != null && _secondStation.value != null) {
+        if (_firstStationWithKeyword.value != null && _secondStationWithKeyword.value != null) {
             viewModelScope.launch {
                 _distance.emit(
                     calculateDistanceUseCase.executeSync(

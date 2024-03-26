@@ -1,7 +1,7 @@
 package maciej.witkowski.koleorecruitmenttask.domain
 
-import maciej.witkowski.koleorecruitmenttask.data.model.StationsItem
 import maciej.witkowski.koleorecruitmenttask.domain.common.ObservableUseCase
-import maciej.witkowski.koleorecruitmenttask.domain.model.NetworkResult
+import maciej.witkowski.koleorecruitmenttask.domain.common.NetworkResult
+import maciej.witkowski.koleorecruitmenttask.domain.model.Station
 
-interface GetStationsUseCase : ObservableUseCase<Unit, NetworkResult<List<StationsItem>>>
+interface GetStationsUseCase : ObservableUseCase<Unit, NetworkResult<List<Station>>>
