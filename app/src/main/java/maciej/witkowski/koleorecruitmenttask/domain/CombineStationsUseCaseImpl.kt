@@ -1,7 +1,5 @@
 package maciej.witkowski.koleorecruitmenttask.domain
 
-import android.util.Log
-import androidx.compose.ui.layout.LookaheadScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn

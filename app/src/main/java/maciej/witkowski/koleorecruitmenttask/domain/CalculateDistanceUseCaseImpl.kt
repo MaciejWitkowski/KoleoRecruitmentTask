@@ -2,7 +2,6 @@ package maciej.witkowski.koleorecruitmenttask.domain
 
 import android.content.Context
 import android.location.Location
-import android.util.Log
 import maciej.witkowski.koleorecruitmenttask.R
 import maciej.witkowski.koleorecruitmenttask.domain.common.BaseResultUseCase
 

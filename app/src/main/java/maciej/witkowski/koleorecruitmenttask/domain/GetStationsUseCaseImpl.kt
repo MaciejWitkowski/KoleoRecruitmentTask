@@ -1,6 +1,5 @@
 package maciej.witkowski.koleorecruitmenttask.domain
 
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
