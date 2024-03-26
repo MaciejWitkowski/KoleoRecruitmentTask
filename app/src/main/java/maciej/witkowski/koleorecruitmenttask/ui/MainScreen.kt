@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import maciej.witkowski.koleorecruitmenttask.R
@@ -25,16 +26,22 @@ fun MainScreen(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = stringResource(R.string.first_station), fontSize = 30.sp)
+        Text(text = stringResource(R.string.first_station), fontSize = 36.sp)
         TextButton(onClick = onFirstStationClick) {
-            Text(text = firstStation ?: stringResource(R.string.select_first_station), fontSize = 30.sp)
+            Text(text = firstStation ?: stringResource(R.string.select_first_station), fontSize = 36.sp)
         }
-        Text(text = stringResource(R.string.second_station), fontSize = 30.sp)
+        Text(text = stringResource(R.string.second_station), fontSize = 36.sp)
         TextButton(onClick = onSecondStationClick) {
-            Text(text = secondStation ?: stringResource(R.string.select_second_station), fontSize = 30.sp)
+            Text(text = secondStation ?: stringResource(R.string.select_second_station), fontSize = 36.sp)
         }
-        Text(text = stringResource(R.string.distance_title), fontSize = 30.sp)
-        Text(text = distance ?: stringResource(R.string.distance_placeholer), fontSize = 30.sp)
+        Text(text = stringResource(R.string.distance_title), fontSize = 36.sp)
+        Text(
+            text = distance ?: stringResource(R.string.distance_placeholer),
+            fontSize = 36.sp,
+            lineHeight = 36.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(top = 8.dp)
+        )
     }
 }
 

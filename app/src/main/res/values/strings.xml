@@ -10,4 +10,6 @@
     <string name="distance">%dkm</string>
     <string name="distance_placeholer">Wprowadź obie stacje</string>
     <string name="distance_unavailable">Nie można obliczyć</string>
+    <string name="error">Błąd pobierania danych</string>
+    <string name="warning_content_description">Warning icon</string>
 </resources>
