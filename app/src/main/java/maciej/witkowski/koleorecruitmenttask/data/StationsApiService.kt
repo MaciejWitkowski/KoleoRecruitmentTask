@@ -11,11 +11,11 @@ interface StationsApiService {
 
     @Headers("X-KOLEO-Version: 1")
     @GET("stations")
-    suspend fun getStations(): List<StationsItem>
+    suspend fun getStations(): Result<List<StationsItem>>
 
     @Headers("X-KOLEO-Version: 1")
     @GET("station_keywords")
-    suspend fun getKeywords(): List<StationKeywordsItem>
+    suspend fun getKeywords(): Result<List<StationKeywordsItem>>
 
     companion object {
         operator fun invoke(retrofit: Retrofit) = retrofit.create<StationsApiService>()

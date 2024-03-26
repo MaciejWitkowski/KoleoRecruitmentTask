@@ -8,6 +8,7 @@ import maciej.witkowski.koleorecruitmenttask.common.DispatcherProvider
 import maciej.witkowski.koleorecruitmenttask.common.DispatcherProviderImpl
 import maciej.witkowski.koleorecruitmenttask.data.StationsApiService
 import maciej.witkowski.koleorecruitmenttask.data.StationsRepositoryImpl
+import maciej.witkowski.koleorecruitmenttask.data.exception.ResultCallAdapterFactory
 import maciej.witkowski.koleorecruitmenttask.domain.CalculateDistanceUseCase
 import maciej.witkowski.koleorecruitmenttask.domain.CalculateDistanceUseCaseImpl
 import maciej.witkowski.koleorecruitmenttask.domain.CombineStationsUseCase
@@ -74,6 +75,7 @@ private fun provideRetrofit(
         .Builder()
         .client(client)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addCallAdapterFactory(ResultCallAdapterFactory())
         .baseUrl(baseUrl)
         .build()
 
